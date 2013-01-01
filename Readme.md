@@ -14,6 +14,7 @@
 
 ```javascript
 
+
   var MinimalCounter = require( 'minimal-counter' ),
       minimalCounter = new MinimalCounter( 100 );
   
