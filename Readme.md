@@ -3,6 +3,10 @@
 
   minimal counter
 
+  ☞ [Demo]
+
+  [Demo]: http://mnmly.github.com/minimal-counter/
+
 ## Installation
 
     $ component install mnmly/minimal-counter
