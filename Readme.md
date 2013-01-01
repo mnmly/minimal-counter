@@ -1,4 +1,3 @@
-
 # minimal-counter
 
   minimal counter
@@ -17,7 +16,8 @@
 
   var MinimalCounter = require( 'minimal-counter' ),
       minimalCounter = new MinimalCounter( 100 );
-
+  
+  document.body.appendChild( minimalCounter.el );
   minimalCounter.update( 80 );
 
 ```
