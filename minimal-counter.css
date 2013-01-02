@@ -14,7 +14,7 @@
 }
 .minimal-counter .sequence {
   width: 0.55em;
-
+  line-height: 1;
   -webkit-transform: translate3d(0, -90%, 0);
   -moz-transform: translate3d(0, -90%, 0);
   -ms-transform: translate3d(0, -90%, 0);
