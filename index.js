@@ -43,7 +43,7 @@ MinimalCounter.prototype.update = function( number ) {
       diff          = digitElements.length - digits.length;
   
   if( diff < 0 ){
-    while ( diff++ ){ this.addDigit(); }
+    //while ( diff++ ){ this.addDigit(); }
     digitElements = this.el.querySelectorAll( '.sequence' );
   } else {
     while ( diff-- ){ digits.push( -1 ); }
