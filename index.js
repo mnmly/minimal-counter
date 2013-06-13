@@ -7,7 +7,7 @@ var domify = require( 'domify' )
   , classes = require('classes')
   , has3d = require('has-translate3d')
   , each = require('each')
-  , transformProperty = null; //require( 'transform-property' );
+  , transformProperty = require( 'transform-property' );
 
 /**
  * Expose `MinimalCounter`
