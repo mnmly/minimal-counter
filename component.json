@@ -6,7 +6,10 @@
   "keywords": [],
   "dependencies": {
     "component/domify": "*",
-    "component/classes": "*"
+    "component/classes": "*",
+    "component/transform-property": "*",
+    "component/has-translate3d": "*",
+    "component/each": "*"
   },
   "development": {},
   "license": "MIT",

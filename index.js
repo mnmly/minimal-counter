@@ -4,7 +4,10 @@
  */
 
 var domify = require( 'domify' )
-  , classes = require('classes');
+  , classes = require('classes')
+  , has3d = require('has-translate3d')
+  , each = require('each')
+  , transformProperty = null; //require( 'transform-property' );
 
 /**
  * Expose `MinimalCounter`
@@ -19,11 +22,14 @@ module.exports = MinimalCounter;
 function MinimalCounter( value ){
 
   var self   = this;
+
+  this.intervals = [];
+  this.prevShifts = [];
+
   this.el    = domify( '<div class="minimal-counter"/>' )[0];
   this.value = value || 100;
   this.value.toString().split('').forEach( self.addDigit.bind( this ) );
   this.update( this.value );
-
 }
 
 MinimalCounter.prototype.addDigit = function() {
@@ -40,36 +46,46 @@ MinimalCounter.prototype.update = function( number ) {
 
   var self          = this,
       digits        = number.toString().split('').reverse(),
-      digitElements = this.el.querySelectorAll( '.sequence' ),
+      digitElements = this.el.children,
       diff          = digitElements.length - digits.length;
   
   if( diff < 0 ){
     while ( diff++ ){ this.addDigit(); }
-    digitElements = this.el.querySelectorAll( '.sequence' );
+    digitElements = this.el.children;
   } else {
     while ( diff-- ){ digits.push( -1 ); }
   }
 
-  digits.forEach( function( num, index ){
+  for ( var index = 0; index < digits.length; index += 1 ) {
+    var num            = digits[index],
+        shift          = - ( 9 - parseInt( num, 10 ) ) * 10,
+        elIndex        = digitElements.length - index - 1,
+        element        = digitElements[elIndex].children[0],
+        translateValue = has3d ? "translate3d(0, " + shift + "%, 0)" : "translate(0, " + shift + "%)";
 
-    var shift     = - ( 9 - parseInt( num, 10 ) ) * 10,
-        elIndex   = digitElements.length - index - 1,
-        element   = digitElements[elIndex],
-        translate = "translate3d(0, " + shift + "%, 0)";
-    
+
     if( num === -1 ){
       classes( element ).add( 'is-hidden' );
     } else {
       classes( element ).remove( 'is-hidden' );
-      self.setTransform( element, translate );
+      if (transformProperty) {
+        this.setTransform(element, translateValue);
+      } else {
+        this.animate(element, this.prevShifts[index], shift, index);
+      }
     }
-  } );
+    this.prevShifts[index] = shift;
+  }
 };
 
-var prefix = ['webkitTransform', 'mozTransform', 'msTransform', 'oTransform', 'transform'];
+MinimalCounter.prototype.setTransform = function( element, translateValue ) {
+  element.style[transformProperty] = translateValue;
+};
 
-MinimalCounter.prototype.setTransform = function( element, translate ) {
-  prefix.forEach( function( transform ){
-    element.style[transform] = translate;
-  } );
+/*
+ * This should animate from previous 
+ */
+MinimalCounter.prototype.animate = function(element, prevShiftY, shiftY, index) {
+  // TODO
+  //
 };
