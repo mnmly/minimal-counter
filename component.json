@@ -2,10 +2,11 @@
   "name": "minimal-counter",
   "repo": "mnmly/minimal-counter",
   "description": "minimal counter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [],
   "dependencies": {
-    "component/domify": "*"
+    "component/domify": "*",
+    "component/classes": "*"
   },
   "development": {},
   "license": "MIT",

@@ -3,7 +3,8 @@
  * Module dependencies
  */
 
-var domify = require( 'domify' );
+var domify = require( 'domify' )
+  , classes = require('classes');
 
 /**
  * Expose `MinimalCounter`
@@ -57,9 +58,9 @@ MinimalCounter.prototype.update = function( number ) {
         translate = "translate3d(0, " + shift + "%, 0)";
     
     if( num === -1 ){
-      element.classList.add( 'is-hidden' );
+      classes( element ).add( 'is-hidden' );
     } else {
-      element.classList.remove( 'is-hidden' );
+      classes( element ).remove( 'is-hidden' );
       self.setTransform( element, translate );
     }
   } );
