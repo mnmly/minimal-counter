@@ -16,7 +16,7 @@ var domify = require( 'domify' )
 module.exports = MinimalCounter;
 
 /**
- * 
+ *
  */
 
 function MinimalCounter( value ){
@@ -26,7 +26,7 @@ function MinimalCounter( value ){
   this.intervals = [];
   this.prevShifts = [];
 
-  this.el    = domify( '<div class="minimal-counter"/>' )[0];
+  this.el    = domify( '<div class="minimal-counter"/>' );
   this.value = value || 100;
   this.value.toString().split('').forEach( self.addDigit.bind( this ) );
   this.update( this.value );
@@ -34,10 +34,10 @@ function MinimalCounter( value ){
 
 MinimalCounter.prototype.addDigit = function() {
 
-  var digit    = domify( '<div class="digit"/>' )[0],
+  var digit    = domify( '<div class="digit"/>' ),
       sequence = domify( '<div class="sequence">'
                         + [9, 8, 7, 6, 5, 4, 3, 2, 1, 0].join('\n')
-                        + '</div>' )[0];
+                        + '</div>' );
   digit.appendChild( sequence );
   this.el.appendChild( digit );
 };
@@ -48,7 +48,7 @@ MinimalCounter.prototype.update = function( number ) {
       digits        = number.toString().split('').reverse(),
       digitElements = this.el.children,
       diff          = digitElements.length - digits.length;
-  
+
   if( diff < 0 ){
     while ( diff++ ){ this.addDigit(); }
     digitElements = this.el.children;
@@ -83,7 +83,7 @@ MinimalCounter.prototype.setTransform = function( element, translateValue ) {
 };
 
 /*
- * This should animate from previous 
+ * This should animate from previous
  */
 MinimalCounter.prototype.animate = function(element, prevShiftY, shiftY, index) {
   // TODO
