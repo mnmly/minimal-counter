@@ -1,0 +1,22 @@
+{
+  "name": "minimal-counter",
+  "version": "0.0.2",
+  "description": "minimal counter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mnmly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mnmly/minimal-counter/issues"
+  },
+  "homepage": "https://github.com/mnmly/minimal-counter#readme",
+  "dependencies": {
+    "component-classes": "^1.2.6",
+    "component-domify": "^1.2.2",
+    "component-each": "^0.2.6",
+    "has-translate3d": "0.0.3",
+    "transform-property": "0.0.1"
+  }
+}
